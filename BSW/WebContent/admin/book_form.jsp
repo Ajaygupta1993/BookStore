@@ -10,6 +10,10 @@
 <!-- <link rel="stylesheet" href="../css/jquery-ui.min.css"/> -->
 <script src="../js/jquery-3.4.1.min.js" type="text/javascript"></script>
 <script src="../js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="../js/jquery.richtext.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/richtext.min.css">
+
 
 <!-- <script src="../js/jquery-ui.min.js" type="text/javascript" ></script> -->
 </head>
@@ -123,6 +127,7 @@
 </body>
 <script type="text/javascript">
 	$(function() {
+		$("#descreption").richText();
 		$("#bookImage").change(function() {
 			showImageThumbnail(this);
 
