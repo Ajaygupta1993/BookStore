@@ -241,10 +241,9 @@ public class BookService {
 		System.out.println("=========catId==============="+catId);
 		List<Book> listBook=bookdao.listByCategory(catId);
 		Category category=categorydao.get(catId);
-		List<Category> listCategory=categorydao.listAll();
-		
+		/*List<Category> listCategory=categorydao.listAll();
+		request.setAttribute("listCategory", listCategory);*/
 		request.setAttribute("listBook", listBook);
-		request.setAttribute("listCategory", listCategory);
 		request.setAttribute("category", category);
 		String newPage="frontend/book_list_category.jsp";
 		RequestDispatcher requestdispatcher = request.getRequestDispatcher(newPage);
@@ -255,10 +254,10 @@ public class BookService {
 		System.out.println("====================RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRr");
 		Integer bookId = Integer.parseInt(request.getParameter("id"));
 		Book book=bookdao.get(bookId);
-		List<Category> listCategory=categorydao.listAll();
+		//List<Category> listCategory=categorydao.listAll();
 		String viewBookPage="frontend/book_detail.jsp";
 		request.setAttribute("book", book);
-		request.setAttribute("listCategory", listCategory);
+		//request.setAttribute("listCategory", listCategory);
 		RequestDispatcher requestdispatcher = request.getRequestDispatcher(viewBookPage);
 		requestdispatcher.forward(request, response);
 		
