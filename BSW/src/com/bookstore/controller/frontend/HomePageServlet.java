@@ -25,12 +25,12 @@ public class HomePageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		CategoryDAO categorydao= new CategoryDAO();
+		/*CategoryDAO categorydao= new CategoryDAO();*/
 		BookDAO bookdao = new BookDAO();
-		List<Category> listCategory=categorydao.listAll();
+		/*List<Category> listCategory=categorydao.listAll();*/
 		List<Book> listNewBook=bookdao.newBookList();
 		
-		request.setAttribute("listCategory", listCategory);
+		/*request.setAttribute("listCategory", listCategory);*/
 		request.setAttribute("listNewBook", listNewBook);
 		String homePage="frontend/index.jsp";
 		RequestDispatcher requestdispatcher=request.getRequestDispatcher(homePage);
