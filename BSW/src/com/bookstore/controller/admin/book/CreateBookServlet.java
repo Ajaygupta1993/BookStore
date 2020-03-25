@@ -18,7 +18,7 @@ fileSizeThreshold =1024 *10, //10kb
 maxFileSize=1024*300, //300kb
 maxRequestSize=1024 * 1024 //1MB
 )
-public class CreateBookServlet extends BaseServlet {
+public class CreateBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

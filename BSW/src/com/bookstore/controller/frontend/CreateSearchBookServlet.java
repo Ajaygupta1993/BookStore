@@ -4,15 +4,15 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bookstore.base.controller.BaseServlet;
 import com.bookstore.service.book.BookService;
 
 
 @WebServlet("/search")
-public class CreateSearchBookServlet extends BaseServlet {
+public class CreateSearchBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	

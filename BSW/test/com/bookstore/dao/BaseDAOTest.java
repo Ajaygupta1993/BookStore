@@ -1,6 +1,6 @@
 package com.bookstore.dao;
 
-import javax.persistence.EntityManager;
+/*import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -14,8 +14,8 @@ public class BaseDAOTest {
 	}
 	
 	public static void setDownClass() {
-		entitymanager.clear();
+		entitymanager.close();
 		entitymanagerfactory.close();
 
-	}
-}
+	}*/
+/*}*/

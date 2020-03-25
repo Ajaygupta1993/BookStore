@@ -94,7 +94,7 @@ public class Book implements java.io.Serializable {
 		this.bookId = bookId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "BOOK_CATEGORY_ID")
 	public Category getCategory() {
 		return this.category;

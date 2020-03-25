@@ -20,18 +20,19 @@ import org.junit.Test;
 import com.bookstore.entity.Book;
 import com.bookstore.entity.Category;
 
-public class BookDAOTest extends BaseDAOTest {
+public class BookDAOTest  {
 	private static BookDAO bookdao;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		BaseDAOTest.setUpClass();
+		//BaseDAOTest.setUpClass();
 		bookdao = new BookDAO();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		BaseDAOTest.setDownClass();
+		//BaseDAOTest.setDownClass();
+		bookdao.close();
 		
 	}
 

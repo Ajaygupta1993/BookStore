@@ -13,7 +13,7 @@ import com.bookstore.service.book.BookService;
 
 
 @WebServlet("/admin/delete_book")
-public class DeleteBookServlet extends BaseServlet {
+public class DeleteBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     

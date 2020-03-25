@@ -12,7 +12,7 @@ import com.bookstore.base.controller.BaseServlet;
 import com.bookstore.service.user.UserServices;
 
 @WebServlet("/admin/login")
-public class AdminLoginServlet extends BaseServlet {
+public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	

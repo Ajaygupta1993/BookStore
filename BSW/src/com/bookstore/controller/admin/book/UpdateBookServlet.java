@@ -18,7 +18,7 @@ fileSizeThreshold =1024 *10, //10kb
 maxFileSize=1024*300, //300kb
 maxRequestSize=1024 * 1024 //1MB
 )
-public class UpdateBookServlet extends BaseServlet {
+public class UpdateBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public UpdateBookServlet() {

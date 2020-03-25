@@ -12,7 +12,7 @@ import com.bookstore.service.book.BookService;
 
 
 @WebServlet("/admin/edit_book")
-public class EditBookServlet extends BaseServlet {
+public class EditBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
