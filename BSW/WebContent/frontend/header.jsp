@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div align="center">
+<a href="${pageContext.request.contextPath}">
 <img  src="images/BookstoreLogo.png">
+</a>
 <div>
 <form action="search" method="get">
 <input type="text" name="keyword" size="50">
