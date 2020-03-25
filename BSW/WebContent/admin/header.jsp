@@ -23,7 +23,7 @@
 		<a href="list_book"> <img src="../images/bookstack.png"><br/>Book</a>
 	</div>
 	<div >
-		<a href="#"> <img src="../images/customer.png"><br/>Customers</a>
+		<a href="list_customer"> <img src="../images/customer.png"><br/>Customers</a>
 	</div>
 	<div >
 		<a href="#"><img src="../images/review.png"><br/>Reviews</a> 
