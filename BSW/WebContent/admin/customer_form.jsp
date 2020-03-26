@@ -35,7 +35,7 @@
 	<div align="center">
 		<c:if test="${customer != null}">
 			<form action="update_customer" method="post" id="customerform">
-				<input type="hidden" name="bookid" value="${customer.bookId }" />
+				<input type="hidden" name="customerId" value="${customer.customerId }" />
 		</c:if>
 		<c:if test="${customer == null}">
 			<form action="create_customer" method="post" id="customerform">
@@ -44,7 +44,7 @@
 		<table class="form">
 			<tr>
 				<td>Email</td>
-				<td><input type="text" name="email" size="20" id="email"
+				<td><input type="text" name="email" size="40" id="email"
 					value="${customer.customerEmail }"></td>
 			</tr>
 			<tr>
@@ -54,19 +54,24 @@
 			</tr>
 			<tr>
 				<td>Password</td>
-				<td><input type="text" name="password" size="20" id="password"
+				<td><input type="password" name="password" size="20" id="password"
 					value="${customer.customerPassword}"></td>
 			</tr>
-			<c:if test="${customer == null}">
+			
 			<tr>
 				<td>Confirm Password</td>
-				<td><input type="text" name="fullName" size="20" id="fullName"
-					></td>
+				<td><input type="password" name="cnfPassword" size="20" id="cnfPassword"
+					value="${customer.customerPassword}"></td>
 			</tr>
-			</c:if>
+			
+			<tr>
+				<td>Phone</td>
+				<td><input type="text" name="phone" maxlength="10" id="phone"
+					value="${customer.customerPhone}"></td>
+			</tr>
 			<tr>
 				<td>Address</td>
-				<td><input type="text" name="address" size="20" id="address"
+				<td><input type="text" name="address" size="40" id="address"
 					value="${customer.customerAddress}"></td>
 			</tr>
 			
@@ -77,7 +82,7 @@
 			</tr>
 			<tr>
 				<td>Zip Code</td>
-				<td><input type="text" name="zipCode" size="20" id="zipCode"
+				<td><input type="text" name="zipCode" size="6" id="zipCode"
 					value="${customer.customerZipCode}"></td>
 			</tr>
 			<tr>
@@ -111,10 +116,17 @@
 		$("#customerform").validate({
 
 			rules : {
-
-				email : "required",
+				email:{
+					required:true,
+					email:true
+				},
 				fullName : "required",
 				password : "required",
+				cnfPassword:{
+					required:true,
+					equalTo:"#password"
+				},
+				phone:"required",
 				address : "required",
 				city : "required",
 				zipCode : "required",
@@ -122,9 +134,17 @@
 			},
 
 			messages : {
-				email : "Please Enter Email",
+				email :{
+					required:"Please enter email",
+					email:"Please eneter a valid email address"
+				},
 				fullName : "Please Enter Full Name",
 				password : "Please Enter Password",
+				cnfPassword:{
+					required:"Please enter Password",
+					equalTo:"Confirm password does not matched"
+				},
+				phone:"Please enter phone number",
 				address : "Please Select Address",
 				city : "Please Select City",
 				zipCode : "Please Enter the city Zip Code",
@@ -134,6 +154,18 @@
 		});
 
 	});
+</script>
+<script type="text/javascript">
+
+/* function confirmPassword(){
+	var password=document.getElementById('password').value;
+	var cnfPassword=document.getElementById('cnfPassword').value;
+	if(password != cnfPassword){
+		alert("Please enter the same password");
+		return false;
+	}
+} */
+
 </script>
 </html>
 

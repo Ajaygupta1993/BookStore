@@ -8,8 +8,8 @@
 <meta charset="ISO-8859-1">
 <title>Manage Customer</title>
 <link rel="stylesheet" href="../css/style.css">
-<!-- <script src="../js/jquery-3.4.1.min.js" type="text/javascript" ></script>
-<script src="../js/jquery.validate.min.js" type="text/javascript" ></script> -->
+ <script src="../js/jquery-3.4.1.min.js" type="text/javascript" ></script>
+<script src="../js/jquery.validate.min.js" type="text/javascript" ></script> 
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
