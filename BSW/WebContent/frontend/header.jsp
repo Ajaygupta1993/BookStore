@@ -9,9 +9,22 @@
 <input type="submit" value="Search">
 </form>
 &nbsp; &nbsp; &nbsp;
-<a href="#">SignIn</a>|&nbsp; &nbsp;
-<a href="#">Register</a>|&nbsp; &nbsp;
-<a href="#">Cart</a>|&nbsp; &nbsp;
+
+<c:if test="${customerLogedin == null}">
+   <a href="login">SignIn</a>|&nbsp; &nbsp;
+   <a href="register">Register</a>|&nbsp; &nbsp;
+   <a href="#">Cart</a>|&nbsp; &nbsp;
+</c:if>
+
+<c:if test="${customerLogedin != null}">
+   <a href="view_profile">Welcome, ${customerLogedin.customerFullName}</a>|&nbsp; &nbsp;
+   <a href="view_order">My Order</a>|&nbsp; &nbsp;
+   <a href="#">Cart</a>|&nbsp; &nbsp;
+   <a href="logout">Logout</a>|&nbsp; &nbsp;
+</c:if>
+
+
+
 
 </div>
 <div>&nbsp;</div>
