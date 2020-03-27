@@ -26,7 +26,7 @@
 		<a href="list_customer"> <img src="../images/customer.png"><br/>Customers</a>
 	</div>
 	<div >
-		<a href="#"><img src="../images/review.png"><br/>Reviews</a> 
+		<a href="list_review"><img src="../images/review.png"><br/>Reviews</a> 
 	</div>
 	<div >
 		<a href="#"> <img src="../images/order.png"><br/>Orders</a>
