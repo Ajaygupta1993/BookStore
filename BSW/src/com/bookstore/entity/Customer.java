@@ -25,7 +25,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
 	@NamedQuery(name="Customer.findAll",query="SELECT C FROM Customer C ORDER BY C.customerRegisterDate DESC"),
 	@NamedQuery(name="Customer.countAll",query="SELECT COUNT(C.customerEmail) FROM Customer C"),
-	@NamedQuery(name = "Customer.findByCustomerEmail", query = "SELECT C FROM  Customer C where C.customerEmail=:email")
+	@NamedQuery(name = "Customer.findByCustomerEmail", query = "SELECT C FROM  Customer C where C.customerEmail=:email"),
+	@NamedQuery(name = "Customer.checkLogin" , query="SELECT C FROM  Customer C where C.customerEmail = :email and C.customerPassword=:password")
 })
 public class Customer implements java.io.Serializable {
 
