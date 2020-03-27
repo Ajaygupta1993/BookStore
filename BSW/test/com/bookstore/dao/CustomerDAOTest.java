@@ -80,5 +80,13 @@ public class CustomerDAOTest {
 		Customer customer=customerDao.findByEmail(email);
 		assertNotNull(customer);
 	}
+	@Test
+	public void checkLoginTest() {
+		String email="ajaykumar@mail.com";
+		String password="12345";
+		Customer customer=customerDao.checkLogin(email, password);
+		assertNotNull(customer);
+		
+	}
 
 }
