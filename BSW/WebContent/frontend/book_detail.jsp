@@ -33,7 +33,7 @@
 
 				</td>
 				<td valign="top" align="left">
-				  Rating ****
+				  <jsp:directive.include file="book_rating.jsp" />
 				</td>
 				<td valign="top" rowspan="2" width="20%">
 				<h2>$${book.bookPrice}</h2>
@@ -51,6 +51,28 @@
 			<tr>
 			<td><h2>Customer Review</h2></td>
 			<td colspan="2"><button >Write Customer Review</button></td>
+			</tr>
+			
+			<tr>
+			<td colspan="3">
+			<table border="0">
+			<c:forEach items="${book.reviews}">
+			<tr>
+			<td>
+			<c:forTokens items="${book.ratingStars}" delims="," var="star">
+				<c:if test="${star eq 'on' }">
+				<img  src="images/rating_on.png">
+				</c:if>
+				<c:if test="${star eq 'half' }">
+				<img  src="images/rating_half.png">
+				</c:if>
+				</c:forTokens>
+			${reviews.reviewHeadline}
+			</td>
+			</tr>
+			</c:forEach>
+			</table>
+			</td>
 			</tr>
 
 		<%-- </c:forEach> --%>

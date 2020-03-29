@@ -46,7 +46,7 @@
 								src="data:image/jpg;base64,${book.base64Image}" width="84"
 								height="90">
 						</a></td>
-						<td valign="top" align="left">Rating ****
+						<td valign="top" align="left"> <jsp:directive.include file="book_rating.jsp" />
 							<h2>
 								<a href="view_book?id=${book.bookId}"> <b>${book.bookTitle}</b>
 								</a>

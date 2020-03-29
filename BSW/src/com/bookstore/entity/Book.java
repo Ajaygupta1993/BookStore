@@ -187,7 +187,7 @@ public class Book implements java.io.Serializable {
 		this.bookOrderDetails = bookOrderDetails;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
 	public Set<Review> getReviews() {
 		return this.reviews;
 	}
@@ -206,7 +206,51 @@ public class Book implements java.io.Serializable {
 		
 		
 	}
+	
+	@javax.persistence.Transient
+	public float getAverageRating() {
+		float averageRating=0.0f;
+		float sum=0.0f;
+		if(reviews.isEmpty()) {
+			return 0.0f;
+			
+		}
+		for(Review review:reviews) {
+			sum+=review.getReviewRating();
+		}
+		averageRating=sum/reviews.size();
+		
+		
+		return averageRating;
+	}
+	@javax.persistence.Transient
+	public String getRatingString(float averageRating) {
+		String result="";
+		int numberOfStarsOn=(int) averageRating;
+		for(int i=1; i<=numberOfStarsOn; i++) {
+			result+="on,";
+		}
+		int next=numberOfStarsOn+1;
+		if(averageRating > numberOfStarsOn) {
+			result+="half,";
+			next++;
+		}
+		for(int j=next; j<=5;j++) {
+			result+="off,";
+		}
+		return result.substring(0,result.length()-1);
+		
+	}
+	@javax.persistence.Transient
+	public String getRatingStars() {
 
+	float averageRating = getAverageRating();
+
+	return getRatingString(averageRating);
+
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -231,5 +275,22 @@ public class Book implements java.io.Serializable {
 			return false;
 		return true;
 	}
+	
+	/*@Transient
+	public String getstar() {
+		String result="";
+		
+		int numberOfStarsOn= (int) rating;
+		for(int i=1; i<=numberOfStarsOn; i++) {
+			result+="on,";
+		}
+		int next=numberOfStarsOn+1;
+		
+		for(int j=next; j<=5;j++) {
+			result+="off,";
+		}
+		return result.substring(0,result.length()-1);
+		
+	}*/
 
 }
