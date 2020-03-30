@@ -17,7 +17,7 @@ public class BookRatingTest {
 		Book book= new Book();
 		Set<Review> reviews= new HashSet<>();
 		Review reviews1=new Review();
-		reviews1.setReviewRating(5.0f);
+		reviews1.setReviewRating(5);
 		reviews.add(reviews1);
 		book.setReviews(reviews);
 		float averageRating=book.getAverageRating();
@@ -38,9 +38,9 @@ public class BookRatingTest {
 		Review reviews1=new Review();
 		Review reviews2=new Review();
 		Review reviews3=new Review();
-		reviews1.setReviewRating(5.0f);
-		reviews2.setReviewRating(4.0f);
-		reviews3.setReviewRating(3.0f);
+		reviews1.setReviewRating(5);
+		reviews2.setReviewRating(4);
+		reviews3.setReviewRating(3);
 		reviews.add(reviews1);
 		reviews.add(reviews2);
 		reviews.add(reviews3);
