@@ -24,7 +24,9 @@ import javax.persistence.TemporalType;
 @Table(name = "review", catalog = "boobkstore")
 @NamedQueries({
 	@NamedQuery(name="Review.listAll",query="SELECT R FROM Review R ORDER BY R.reviewDate DESC"),
-	@NamedQuery(name="Review.countAll",query="SELECT COUNT(R) FROM Review R")
+	@NamedQuery(name="Review.countAll",query="SELECT COUNT(R) FROM Review R"),
+	@NamedQuery(name="Review.findByCustomerAndBook",query="SELECT R FROM Review R WHERE R.customer.customerId =:customerId AND R.book.bookId=:bookId ")
+	
 	
 })
 public class Review implements java.io.Serializable {
@@ -34,7 +36,7 @@ public class Review implements java.io.Serializable {
 	private Customer customer;
 	private Review review;
 	private String reviewComment;
-	private Float reviewRating;
+	private int reviewRating;
 	private Date reviewDate;
 	private String reviewHeadline;
 	private Set<Review> reviews = new HashSet<Review>(0);
@@ -42,7 +44,7 @@ public class Review implements java.io.Serializable {
 	public Review() {
 	}
 
-	public Review(Book book,Customer customer, Review review, String reviewComment, Float reviewRating, Date reviewDate,
+	public Review(Book book,Customer customer, Review review, String reviewComment, int reviewRating, Date reviewDate,
 			String reviewHeadline, Set<Review> reviews) {
 		this.book = book;
 		this.customer=customer;
@@ -96,11 +98,11 @@ public class Review implements java.io.Serializable {
 	}
 
 	@Column(name = "REVIEW_RATING", precision = 12, scale = 0)
-	public Float getReviewRating() {
+	public int getReviewRating() {
 		return this.reviewRating;
 	}
 
-	public void setReviewRating(Float reviewRating) {
+	public void setReviewRating(int reviewRating) {
 		this.reviewRating = reviewRating;
 	}
 	
