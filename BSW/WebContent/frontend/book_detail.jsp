@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>${book.bookTitle}</title>
 <link rel="stylesheet" href="css/style.css">
+<script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="js/jquery.validate.min.js" type="text/javascript"></script>
 </head>
 <body>
 <jsp:directive.include file = "header.jsp" />
@@ -50,7 +53,7 @@
 			</tr>
 			<tr>
 			<td><h2>Customer Review</h2></td>
-			<td colspan="2"><button >Write Customer Review</button></td>
+			<td colspan="2"><button id="buttonWriteReview">Write Customer Review</button></td>
 			</tr>
 			
 			<tr>
@@ -75,11 +78,22 @@
 			</td>
 			</tr>
 
-		<%-- </c:forEach> --%>
+		
 		</table>
 	</div>
+<jsp:directive.include file = "footer.jsp" />
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#buttonWriteReview').click(function(){
+		window.location='write_review?book_id='+${book.bookId};
+		
+	});
+});
 
 
-	<jsp:directive.include file = "footer.jsp" />
+
+
+
+</script>
 </body>
 </html>
