@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bookstore.dao.CustomerDAO;
 import com.bookstore.entity.Customer;
@@ -176,8 +177,18 @@ public class CustomerService {
 			showLogin();
 		}
 		else {
-			request.getSession().setAttribute("customerLogedin", customer);
+			//passing the url in rivew_form if customer is logdin or customer give the credentials for writing the review
+			HttpSession session=request.getSession();
+			session.setAttribute("customerLogedin", customer);
+			Object objectRedirectURL=session.getAttribute("redirectURL");
+			if(objectRedirectURL !=null) {
+				String redirectURL=(String)objectRedirectURL;
+				session.removeAttribute(redirectURL);
+				response.sendRedirect(redirectURL);
+			}else {
+			
 			showCustomerProfile();
+			}
 		}
 		
 	}
