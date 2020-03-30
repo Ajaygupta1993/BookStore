@@ -66,3 +66,7 @@ input{
 	color: red;
 	margin: 5px;
 }
+#book-title{
+	font-family: x-large;
+	font-weight: bold;
+}
