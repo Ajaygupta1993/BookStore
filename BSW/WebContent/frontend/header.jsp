@@ -13,7 +13,7 @@
 <c:if test="${customerLogedin == null}">
    <a href="login">SignIn</a>|&nbsp; &nbsp;
    <a href="register">Register</a>|&nbsp; &nbsp;
-   <a href="#">Cart</a>|&nbsp; &nbsp;
+   
 </c:if>
 
 <c:if test="${customerLogedin != null}">
@@ -22,7 +22,7 @@
    <a href="#">Cart</a>|&nbsp; &nbsp;
    <a href="logout">Logout</a>|&nbsp; &nbsp;
 </c:if>
-
+<a href="view_cart">Cart</a>|&nbsp; &nbsp;
 
 
 

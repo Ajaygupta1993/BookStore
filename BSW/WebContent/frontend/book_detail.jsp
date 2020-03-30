@@ -42,7 +42,7 @@
 				<h2>$${book.bookPrice}</h2>
 				<br/>
 				
-				<button type="submit">AddToCart</button>
+				<button id="buttonAddToCart">AddToCart</button>
 				</td>
 
 			</tr>
@@ -86,6 +86,10 @@
 $(document).ready(function(){
 	$('#buttonWriteReview').click(function(){
 		window.location='write_review?book_id='+${book.bookId};
+		
+	});
+	$('#buttonAddToCart').click(function(){
+		window.location='add_to_cart?book_id='+${book.bookId};
 		
 	});
 });

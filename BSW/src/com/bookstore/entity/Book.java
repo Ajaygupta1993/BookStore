@@ -55,6 +55,11 @@ public class Book implements java.io.Serializable {
 	public Book() {
 	}
 
+	public Book(Integer bookId) {
+		super();
+		this.bookId = bookId;
+	}
+
 	public Book(String bookTitle, String bookAuther, String bookDescription, String bookIsbn, byte[] bookImage,
 			float bookPrice, Date bookPublishDate) {
 		this.bookTitle = bookTitle;
