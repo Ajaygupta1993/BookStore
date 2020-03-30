@@ -35,7 +35,7 @@ public class ReviewDAOTest {
 		review.setBook(book);
 		review.setCustomer(customer);
 		review.setReviewHeadline("This is very good book");
-		review.setReviewRating(5.0f);
+		review.setReviewRating(5);
 		review.setReviewComment("I have just read this book it's good for experience");
 		Review savedReview=reviewDao.create(review);
 		assertTrue(savedReview.getReviewId()>0);
@@ -80,6 +80,22 @@ public class ReviewDAOTest {
 	public void testCount() {
 		long totalreview=reviewDao.count();
 		assertTrue(totalreview>0);
+	}
+	@Test
+	public void testfindByCustomerAndBookIdNotFound() {
+		Integer customerId=100;
+		Integer bookId=89;
+		Review result=reviewDao.findByCustomerAndBookId(customerId, bookId);
+		assertNull(result);
+		
+	}
+	@Test
+	public void testfindByCustomerAndBookId() {
+		Integer customerId=4;
+		Integer bookId=10;
+		Review result=reviewDao.findByCustomerAndBookId(customerId, bookId);
+		assertNotNull(result);
+		
 	}
 
 }
