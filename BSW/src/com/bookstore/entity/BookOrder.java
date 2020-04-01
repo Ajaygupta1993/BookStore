@@ -29,7 +29,9 @@ import javax.persistence.Transient;
 @Table(name = "book_order", catalog = "boobkstore")
 @NamedQueries({
 	@NamedQuery(name="BookOrder.findAll",query="SELECT BO FROM BookOrder BO ORDER BY BO.orderDate DESC "),
-	@NamedQuery(name="BookOrder.countAll",query="SELECT COUNT(*) FROM BookOrder ")
+	@NamedQuery(name="BookOrder.countAll",query="SELECT COUNT(*) FROM BookOrder "),
+	@NamedQuery(name="BookOrder.findByCustomer",query="SELECT BO FROM BookOrder BO WHERE BO.customer.customerId =:customerId ORDER BY BO.orderDate DESC "),
+	@NamedQuery(name="BookOrder.findByCustomerIdAndOrderId",query="SELECT BO FROM BookOrder BO WHERE BO.orderId =:orderId AND BO.customer.customerId =:customerId ORDER BY BO.orderDate DESC")
 	
 })
 public class BookOrder implements java.io.Serializable {
