@@ -78,7 +78,7 @@
 	<td><input type="button" id="clearCart" value="clearCart"/></td>
 	<!-- <button id="">Clear Cart</button> -->
 	<td><a href="${pageContext.request.contextPath}/">Continue Shopping</a></td>
-	<td><a href="">CheckOut</a></td>
+	<td><a href="checkout">CheckOut</a></td>
 	</tr>
 	</table>
 	</div>

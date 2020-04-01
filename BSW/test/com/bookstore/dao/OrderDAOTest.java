@@ -99,5 +99,17 @@ public class OrderDAOTest {
 		long totalOrder=OrderDAO.count();
 		assertEquals(2, totalOrder);
 	}
+	@Test
+	public void testListByCustomerNoOrder() {
+		Integer customerId=76;
+		List<BookOrder> list=OrderDAO.listByCustomer(customerId);
+		assertTrue(list.isEmpty());
+	}
+	@Test
+	public void testListByCustomerHasOrder() {
+		Integer customerId=3;
+		List<BookOrder> list=OrderDAO.listByCustomer(customerId);
+		assertTrue(list.size()>0);
+	}
 
 }
