@@ -1,0 +1,118 @@
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`boobkstore` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `boobkstore`;
+
+
+
+DROP TABLE IF EXISTS `book`;
+
+CREATE TABLE `book` (
+  `BOOK_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `BOOK_TITLE` varchar(50) NOT NULL,
+  `BOOK_AUTHER` varchar(30) NOT NULL,
+  `BOOK_DESCRIPTION` mediumtext NOT NULL,
+  `BOOK_ISBN` varchar(20) NOT NULL,
+  `BOOK_IMAGE` blob NOT NULL,
+  `BOOK_PRICE` float NOT NULL,
+  `BOOK_PUBLISH_DATE` date NOT NULL,
+  `BOOK_CATEGORY_ID` int(11) DEFAULT NULL,
+  `BOOK_LAST_UPDATED` datetime DEFAULT NULL,
+  PRIMARY KEY (`BOOK_ID`),
+  KEY `BOOK_CATEGORY_ID` (`BOOK_CATEGORY_ID`),
+  CONSTRAINT `book_ibfk_1` FOREIGN KEY (`BOOK_CATEGORY_ID`) REFERENCES `category` (`CATEGORY_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `book_order`;
+
+CREATE TABLE `book_order` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) NOT NULL,
+  `order_date` datetime NOT NULL,
+  `shipping_address` varchar(256) NOT NULL,
+  `recipient_name` varchar(30) NOT NULL,
+  `recipient_phone` varchar(15) NOT NULL,
+  `payment_method` varchar(20) NOT NULL,
+  `total` float NOT NULL,
+  `status` varchar(20) NOT NULL,
+  PRIMARY KEY (`order_id`),
+  UNIQUE KEY `order_id_UNIQUE` (`order_id`),
+  KEY `customer_fk_2_idx` (`customer_id`),
+  CONSTRAINT `customer_fk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`CUSTOMER_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `category`;
+
+CREATE TABLE `category` (
+  `CATEGORY_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CATEGORY_NAME` varchar(30) NOT NULL,
+  PRIMARY KEY (`CATEGORY_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+
+
+
+DROP TABLE IF EXISTS `customer`;
+
+CREATE TABLE `customer` (
+  `CUSTOMER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CUSTOMER_EMAIL` varchar(64) NOT NULL,
+  `CUSTOMER_FULL_NAME` varchar(30) NOT NULL,
+  `CUSTOMER_ADDRESS` varchar(128) NOT NULL,
+  `CUSTOMER_CITY` varchar(32) NOT NULL,
+  `CUSTOMER_COUNTRY` varchar(64) NOT NULL,
+  `CUSTOMER_REGISTER_DATE` datetime NOT NULL,
+  `CUSTOMER_PASSWORD` varchar(16) NOT NULL,
+  `CUSTOMER_PHONE` varchar(10) DEFAULT NULL,
+  `CUSTOMER_ZIP_CODE` int(6) DEFAULT NULL,
+  PRIMARY KEY (`CUSTOMER_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `order_detail`;
+
+CREATE TABLE `order_detail` (
+  `order_id` int(11) DEFAULT NULL,
+  `book_id` int(11) DEFAULT NULL,
+  `quantity` int(11) NOT NULL,
+  `subtotal` float NOT NULL,
+  KEY `order_fk_idx` (`order_id`),
+  KEY `book_fk_2_idx` (`book_id`),
+  CONSTRAINT `book_fk_2` FOREIGN KEY (`book_id`) REFERENCES `book` (`BOOK_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `order_fk` FOREIGN KEY (`order_id`) REFERENCES `book_order` (`order_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `review`;
+
+CREATE TABLE `review` (
+  `REVIEW_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `REVIEW_BOOK_ID` int(11) DEFAULT NULL,
+  `REVIEW_CUSTOMER_ID` int(11) DEFAULT NULL,
+  `REVIEW_COMMENT` text,
+  `REVIEW_RATING` float DEFAULT NULL,
+  `REVIEW_DATE` datetime DEFAULT NULL,
+  `REVIEW_HEADLINE` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`REVIEW_ID`),
+  KEY `review_ibfk_1` (`REVIEW_BOOK_ID`),
+  KEY `review_ibfk_2` (`REVIEW_CUSTOMER_ID`),
+  CONSTRAINT `review_ibfk_1` FOREIGN KEY (`REVIEW_BOOK_ID`) REFERENCES `book` (`BOOK_ID`),
+  CONSTRAINT `review_ibfk_2` FOREIGN KEY (`REVIEW_CUSTOMER_ID`) REFERENCES `customer` (`CUSTOMER_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+
+
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+  `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USER_EMAIL` varchar(30) NOT NULL,
+  `USER_PASSWORD` varchar(16) DEFAULT NULL,
+  `USER_NAME` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`,`USER_EMAIL`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+
+
