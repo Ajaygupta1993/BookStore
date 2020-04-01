@@ -22,6 +22,7 @@ public class JpaDAO<E> {
 	}
 
 	public E create(E entity) {
+		System.out.println("==========entity====================="+entity.toString());
 		EntityManager entitymanager = entitymanagerfactory.createEntityManager();
 		entitymanager.getTransaction().begin();
 		entitymanager.persist(entity);

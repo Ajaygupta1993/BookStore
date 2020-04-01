@@ -31,7 +31,7 @@
 				<jsp:directive.include file="book_rating.jsp" />
 				</div>
 				<div><i>${book.bookAuther }</i></div>
-				<div><b>${book.bookPrice }</b></div>
+				<div><b>$${book.bookPrice }</b></div>
 			</div>
 
 
