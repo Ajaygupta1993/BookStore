@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bookstore.base.constants.JspPageConstantsForAdmin;
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Category;
 
@@ -40,7 +41,7 @@ public class CategoryService {
 		if (message != null) {
 			request.setAttribute("message", message);
 		}
-		String catogrPage = "category_list.jsp";
+		String catogrPage = JspPageConstantsForAdmin.CATEGORY_LIST;
 		RequestDispatcher requestdispatcher = request.getRequestDispatcher(catogrPage);
 		requestdispatcher.forward(request, response);
 
@@ -57,7 +58,7 @@ public class CategoryService {
 	public void editCategory() throws ServletException, IOException {
 		int userId = Integer.parseInt(request.getParameter("id"));
 		Category category = categorydao.get(userId);
-		String editcategory = "category_form.jsp";
+		String editcategory = JspPageConstantsForAdmin.CATEGORY_FORM;
 		request.setAttribute("category", category);
 		RequestDispatcher requestdispatcher = request.getRequestDispatcher(editcategory);
 		requestdispatcher.forward(request, response);

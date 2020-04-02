@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import com.bookstore.base.constants.JspPageConstantsForAdmin;
+import com.bookstore.base.constants.JspPageConstantsForUser;
 import com.bookstore.dao.BookDAO;
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Book;
@@ -57,7 +59,7 @@ public class BookService {
 		if (message != null) {
 			request.setAttribute("message", message);
 		}
-		String catogrPage = "book_list.jsp";
+		String catogrPage =JspPageConstantsForAdmin.BOOK_LIST;
 		RequestDispatcher requestdispatcher = request.getRequestDispatcher(catogrPage);
 		requestdispatcher.forward(request, response);
 
@@ -68,7 +70,7 @@ public class BookService {
 
 		request.setAttribute("listCategory", listCategory);
 
-		String newPage = "book_form.jsp";
+		String newPage = JspPageConstantsForAdmin.NEW_BOOK_FORM;
 		RequestDispatcher requestdispatcher = request.getRequestDispatcher(newPage);
 		requestdispatcher.forward(request, response);
 
@@ -130,7 +132,7 @@ public class BookService {
 		Book book = bookdao.get(bookId);
 		List<Category> listCategory = categorydao.listAll();
 		request.setAttribute("listCategory", listCategory);
-		String editbook = "book_form.jsp";
+		String editbook = JspPageConstantsForAdmin.EDIT_BOOK_FORM;
 		request.setAttribute("book", book);
 		RequestDispatcher requestdispatcher = request.getRequestDispatcher(editbook);
 		requestdispatcher.forward(request, response);
@@ -200,7 +202,6 @@ public class BookService {
 		} catch (ParseException e) {
 			new ServletException("Error parsing in publish date");
 		}
-
 		existBook.setBookTitle(title);
 		existBook.setBookAuther(auther);
 		existBook.setBookIsbn(isbn);
@@ -209,7 +210,6 @@ public class BookService {
 		existBook.setBookPublishDate(publishDate);
 		Category category = categorydao.get(categoryId);
 		existBook.setCategory(category);
-
 		Part part = request.getPart("bookImage");
 		if (part != null && part.getSize() > 0) {
 			long size = part.getSize();
@@ -223,7 +223,6 @@ public class BookService {
 
 		String message = "A  Book Updated Sucessfully";
 		listbook(message);
-
 	}
 
 	public void deleteBook() throws ServletException, IOException {
@@ -231,57 +230,45 @@ public class BookService {
 		bookdao.delete(bookId);
 		String message = "This  Book is  Deleted Sucessfully";
 		listbook(message);
-		
-		
-		
 	}
 	
 	public void listBookByCategory() throws ServletException, IOException {
 		Integer catId = Integer.parseInt(request.getParameter("id"));
-		System.out.println("=========catId==============="+catId);
 		List<Book> listBook=bookdao.listByCategory(catId);
 		Category category=categorydao.get(catId);
 		/*List<Category> listCategory=categorydao.listAll();
 		request.setAttribute("listCategory", listCategory);*/
 		request.setAttribute("listBook", listBook);
 		request.setAttribute("category", category);
-		String newPage="frontend/book_list_category.jsp";
+		String newPage=JspPageConstantsForUser.FRONT_END_BOOK_LIST;
 		RequestDispatcher requestdispatcher = request.getRequestDispatcher(newPage);
 		requestdispatcher.forward(request, response);
 	}
 
 	public void viewBookDetail() throws ServletException, IOException {
-		System.out.println("====================RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRr");
 		Integer bookId = Integer.parseInt(request.getParameter("id"));
 		Book book=bookdao.get(bookId);
 		//List<Category> listCategory=categorydao.listAll();
-		String viewBookPage="frontend/book_detail.jsp";
+		String viewBookPage=JspPageConstantsForUser.FRONT_END_BOOK_DETAIL;
 		request.setAttribute("book", book);
 		//request.setAttribute("listCategory", listCategory);
 		RequestDispatcher requestdispatcher = request.getRequestDispatcher(viewBookPage);
 		requestdispatcher.forward(request, response);
-		
-		
-		
 	}
 
 	public void searchBook() throws ServletException, IOException {
 		String keyword=request.getParameter("keyword");
 		List<Book> result=null;
-		String searchResultPage="frontend/search_result.jsp";
-		
+		String searchResultPage=JspPageConstantsForUser.FRONT_END_SEARCH_RESULT;
 		if(keyword=="") {
 			result=bookdao.listAll();
 		}
 		else {
 			result=bookdao.search(keyword);
-			
 		}
 		request.setAttribute("result", result);
 		request.setAttribute("keyword", keyword);
-		
 		RequestDispatcher requestdispatcher = request.getRequestDispatcher(searchResultPage);
 		requestdispatcher.forward(request, response);
-		
 	}
 }

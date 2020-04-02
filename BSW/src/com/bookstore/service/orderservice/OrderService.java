@@ -138,4 +138,16 @@ public class OrderService {
 		
 	}
 
+	public void showEditOrderForAdmin() throws ServletException, IOException {
+		Integer orderId=Integer.parseInt(request.getParameter("orderId"));
+		BookOrder order=orderDAO.get(orderId);
+		HttpSession session=request.getSession();
+		session.setAttribute("order", order);
+		String editOrder="order_form.jsp";
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher(editOrder);
+		requestDispatcher.forward(request, response);
+		
+	}
+	
+
 }
